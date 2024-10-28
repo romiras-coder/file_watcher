@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  file_watcher:
+    container_name: file_watcher
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    command: /app/fswatchSmb.sh
+    volumes:
+      - ./shared_images_2:${MONITORING_PATH:-/mnt/shared_images_2}:rw
+    env_file:
+      - ./.env
+    restart: always
+
